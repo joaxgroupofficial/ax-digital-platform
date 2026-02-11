@@ -34,5 +34,10 @@ return [
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
     ],
+    'heyzine' => [
+        'base_url' => env('HEYZINE_BASE_URL'),
+        'api_key'  => env('HEYZINE_API_KEY'),
+    ],
+
 
 ];
