@@ -8,10 +8,7 @@ import {
 } from "@material-tailwind/react";
 
 import Link from "next/link";
-
-
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
-
 import TableLayout from "@/components/layout/TableLayout";
 
 export default function ContentTable() {
@@ -42,10 +39,8 @@ export default function ContentTable() {
               <Link href="/content/create">
                 <Button color="blue">Add Content</Button>
               </Link>
-              
             </div>
           </div>
-
         </CardHeader>
       }
     >
@@ -53,6 +48,7 @@ export default function ContentTable() {
         <thead>
           <tr className="border-b">
             <th className="p-4 text-left">Title</th>
+            <th className="p-4 text-left">Site Name</th>
             <th className="p-4 text-left">Type</th>
             <th className="p-4 text-left">Status</th>
             <th className="p-4 text-left">Author</th>
@@ -60,17 +56,18 @@ export default function ContentTable() {
             <th className="p-4 text-right">Actions</th>
           </tr>
         </thead>
-
+        {/* wait to wirte fetch query from sql */}
         <tbody>
           <tr className="border-b">
-            <td className="p-4">Homepage</td>
-            <td className="p-4">Banner</td>
+            <td className="p-4">news name</td>
+            <td className="p-4">traveler thailand</td>
+            <td className="p-4">post</td>
+
             <td className="p-4">Published</td>
             <td className="p-4">Admin</td>
             <td className="p-4">2026-02-03</td>
             <td className="p-4 text-right">⋯</td>
           </tr>
-          
         </tbody>
       </table>
 

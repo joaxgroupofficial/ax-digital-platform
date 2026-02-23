@@ -13,21 +13,16 @@ import {
 
 const WEBSITE_GROUPS: Record<string, string[]> = {
     Thailand: [
-        "bangkokone.news",
         "travelerthailand.com",
-        "magazinethailand.com",
     ],
     UAE: [
         "traveleruae.com",
-        "magazineuae.com",
     ],
     HongKong: [
         "travelerhongkong.com",
-        "magazinehongkong.com",
     ],
     SaudiArabia: [
         "travelersa.com",
-        "magazinesa.com",
     ],
 };
 import { useRouter } from "next/navigation";
@@ -78,12 +73,19 @@ export default function AddContentForm() {
                 Create post or banner and publish to selected websites
             </Typography>
 
-            <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
-                <div className="md:col-span-2">
+            <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
+                <div className="md:col-span-3">
                     <Typography variant="small" className="mb-2 font-medium">
                         Title
                     </Typography>
                     <Input size="lg" placeholder="Content title" />
+                </div>
+
+                <div>
+                    <Typography variant="small" className="mb-2 font-medium">
+                        Slug
+                    </Typography>
+                    <Input size="lg" placeholder="/" />
                 </div>
 
                 <div>
@@ -108,7 +110,7 @@ export default function AddContentForm() {
                     </Select>
                 </div>
 
-                <div className="md:col-span-2">
+                <div className="md:col-span-3">
                     <Typography variant="small" className="mb-2 font-medium">
                         Content Details
                     </Typography>
@@ -134,7 +136,6 @@ export default function AddContentForm() {
                         </span>
                     </label>
 
-                    {/* Preview */}
                     {previews.length > 0 && (
                         <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4">
                             {previews.map((src, index) => (
@@ -178,7 +179,7 @@ export default function AddContentForm() {
                                     {region}
                                 </Typography>
 
-                                <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+                                <div className="grid grid-cols-1 gap-3 md:grid-cols-2 ">
                                     {regionSites.map((site) => (
                                         <label
                                             key={site}
