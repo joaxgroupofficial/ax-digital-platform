@@ -7,6 +7,7 @@ import { getFlipbooks } from "@/lib/flipbooks";
 interface Flipbook {
   id: string;
   title: string;
+  date: string;
   pages: number;
   size: number;
   links: {
@@ -34,6 +35,15 @@ export default function FlipbookPage() {
     loadData();
   }, []);
 
+  const formatDate = (dateString: string) => {
+    if (!dateString) return "-";
+    return new Date(dateString).toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    });
+  };
+
   return (
     <section className="p-6 space-y-6">
       <Card>
@@ -47,7 +57,7 @@ export default function FlipbookPage() {
 
       <Card>
         <CardBody>
-          <Typography variant="h5" className="mb-4">
+          <Typography variant="h5" className="mb-6">
             All Flipbooks
           </Typography>
 
@@ -61,31 +71,44 @@ export default function FlipbookPage() {
             </Typography>
           )}
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid lg:grid-cols-4 gap-8">
             {flipbooks.map((item) => (
-              <Card key={item.id} className="border shadow-sm">
-                <CardBody className="space-y-3">
-                  
+              <Card
+                key={item.id}
+                className="border shadow-md hover:shadow-xl transition-all duration-300 rounded-xl overflow-hidden"
+              >
+                <div className="w-full aspect-[3/4] overflow-hidden relative">
+                  <span className="bg-gray-100 px-3 py-1 rounded-full text-xs font-medium top-3 right-1 text-gray-70 absolute">
+                    {item.pages ?? 0} pages
+                  </span>
+
                   <img
                     src={item.links.thumbnail}
-                    alt="thumbnail"
-                    className="w-full h-48 object-cover rounded-lg"
+                    alt={item.title}
+                    className="w-full h-full object-contain"
                   />
+                </div>
 
-                  <Typography variant="h6">
+                <CardBody className="space-y-4">
+                  <Typography
+                    variant="h6"
+                    className="font-semibold line-clamp-2 "
+                  >
                     {item.title || "Untitled Flipbook"}
                   </Typography>
 
-                  <Typography color="gray" className="text-sm">
-                    {item.pages} pages
-                  </Typography>
+                  <div className="flex items-center justify-between text-sm text-gray-500">
+                    <span>
+                      {formatDate(item.date)}
+                    </span>
+                  </div>
 
                   <a
                     href={item.links.custom}
                     target="_blank"
-                    className="text-blue-500 text-sm underline"
+                    className="inline-block text-blue-600 font-medium hover:underline"
                   >
-                    View Flipbook
+                    View Flipbook →
                   </a>
                 </CardBody>
               </Card>
