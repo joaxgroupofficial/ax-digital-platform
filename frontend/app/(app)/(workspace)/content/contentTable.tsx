@@ -18,13 +18,12 @@ export default function ContentTable() {
         <CardHeader
           floated={false}
           shadow={false}
-          className="lex justify-between md:items-center gap-y-4 flex-col md:flex-row"
         >
           <div className="flex justify-between md:items-center gap-y-4 flex-col md:flex-row">
             <div>
-              <Typography className="font-bold">Members List</Typography>
+              <Typography className="font-bold">Post List</Typography>
               <Typography variant="small" className="font-normal text-gray-600">
-                See information about all members
+                See information about all post and banner
               </Typography>
             </div>
             <div className="flex gap-2">
@@ -56,13 +55,13 @@ export default function ContentTable() {
             <th className="p-4 text-right">Actions</th>
           </tr>
         </thead>
+
         {/* wait to wirte fetch query from sql */}
         <tbody>
           <tr className="border-b">
             <td className="p-4">news name</td>
             <td className="p-4">traveler thailand</td>
             <td className="p-4">post</td>
-
             <td className="p-4">Published</td>
             <td className="p-4">Admin</td>
             <td className="p-4">2026-02-03</td>

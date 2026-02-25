@@ -12,7 +12,7 @@ export default function TableLayout({
   return (
     <Card className="w-full">
       {header}
-      <CardBody className="overflow-x-auto !px-0">
+      <CardBody className="!px-0 overflow-visible">
         {children}
       </CardBody>
     </Card>

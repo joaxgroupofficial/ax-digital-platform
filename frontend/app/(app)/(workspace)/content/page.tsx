@@ -2,6 +2,7 @@
 
 import { Card, CardBody, Typography } from "@material-tailwind/react";
 import ContentTable from "./contentTable";
+import ContentChart from "./contentChart";
 
 export default function ContentManagerPage() {
   return (
@@ -13,8 +14,9 @@ export default function ContentManagerPage() {
             Overview & future features will live here
           </Typography>
         </CardBody>
-      </Card>
 
+      </Card>
+      <ContentChart />
       <ContentTable />
     </section>
   );
