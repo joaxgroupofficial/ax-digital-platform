@@ -47,8 +47,9 @@ export default function ContentForm({
     const [seoDescription, setSeoDescription] = React.useState("");
 
     const [showSEO, setShowSEO] = React.useState(false);
+    
     const previewTitle =
-        seoTitle || title || "Your SEO title will appear here";
+        seoTitle || title || "SEO Title (50-60 chatacters)";
 
     const previewDescription =
         seoDescription ||
@@ -140,19 +141,6 @@ export default function ContentForm({
 
                             <div>
                                 <Typography variant="small" className="mb-2 font-medium text-gray-700">
-                                    Slug 
-                                </Typography>
-                                <input
-                                    type="text"
-                                    value={slug}
-                                    onChange={(e) => setSlug(e.target.value)}
-                                    placeholder="/post-slug"
-                                    className="w-full h-11 px-4 border border-gray-300 rounded-lg text-sm focus:border-blue-500 focus:outline-none transition-colors duration-150"
-                                />
-                            </div>
-
-                            <div>
-                                <Typography variant="small" className="mb-2 font-medium text-gray-700">
                                     Content
                                 </Typography>
                                 <textarea
@@ -163,7 +151,66 @@ export default function ContentForm({
                                     className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm resize-none focus:border-blue-500 focus:outline-none transition-colors duration-150"
                                 />
                             </div>
+
+                            <div>
+                                <Typography variant="small" className="mb-2 font-medium text-gray-700">
+                                    Gallery Images
+                                </Typography>
+                                <label className="block">
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        multiple
+                                        onChange={handleImageChange}
+                                        className="hidden"
+                                    />
+
+                                    <div className="border-2 border-dashed border-blue-gray-200 rounded-xl h-44 flex flex-col items-center justify-center cursor-pointer hover:border-blue-400 transition">
+                                        <Typography variant="small">
+                                            Click to upload or drag & drop
+                                        </Typography>
+                                        <Typography variant="small" className="text-gray-500 mt-1">
+                                            PNG, JPG up to 5MB
+                                        </Typography>
+                                    </div>
+                                    {previews.length > 0 && (
+                                        <div className="mt-6 grid grid-cols-2 md:grid-cols-3 gap-4">
+                                            {previews.map((src, index) => (
+                                                <div key={index} className="relative group space-y-2">
+                                                    <img
+                                                        src={src}
+                                                        alt={imageAlts[index] || "preview"}
+                                                        className="h-32 w-full object-cover rounded-lg border"
+                                                    />
+
+                                                    <input
+                                                        type="text"
+                                                        value={imageAlts[index] || ""}
+                                                        onChange={(e) => {
+                                                            const newAlts = [...imageAlts];
+                                                            newAlts[index] = e.target.value;
+                                                            setImageAlts(newAlts);
+                                                        }}
+                                                        placeholder="Alt text (SEO description)"
+                                                        className="w-full px-2 py-1 text-xs border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                                    />
+
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => removeImage(index)}
+                                                        className="absolute top-2 right-2 bg-red-500 text-white p-1 rounded-full"
+                                                    >
+                                                        <TrashIcon className="h-4 w-4" />
+                                                    </button>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                </label>
+
+                            </div>
                         </div>
+
                         {/* SEO SETTINGS */}
                         <div className="bg-white border rounded-xl p-6 shadow-sm space-y-4">
                             <button
@@ -219,66 +266,6 @@ export default function ContentForm({
                         </div>
 
 
-
-
-                        <div className="bg-white border rounded-xl p-6 shadow-sm">
-                            <Typography variant="h6" className="mb-4">
-                                Gallery Images
-                            </Typography>
-
-                            <label className="block">
-                                <input
-                                    type="file"
-                                    accept="image/*"
-                                    multiple
-                                    onChange={handleImageChange}
-                                    className="hidden"
-                                />
-
-                                <div className="border-2 border-dashed border-blue-gray-200 rounded-xl h-44 flex flex-col items-center justify-center cursor-pointer hover:border-blue-400 transition">
-                                    <Typography variant="small">
-                                        Click to upload or drag & drop
-                                    </Typography>
-                                    <Typography variant="small" className="text-gray-500 mt-1">
-                                        PNG, JPG up to 5MB
-                                    </Typography>
-                                </div>
-                            </label>
-
-                            {previews.length > 0 && (
-                                <div className="mt-6 grid grid-cols-2 md:grid-cols-3 gap-4">
-                                    {previews.map((src, index) => (
-                                        <div key={index} className="relative group space-y-2">
-                                            <img
-                                                src={src}
-                                                alt={imageAlts[index] || "preview"}
-                                                className="h-32 w-full object-cover rounded-lg border"
-                                            />
-
-                                            <input
-                                                type="text"
-                                                value={imageAlts[index] || ""}
-                                                onChange={(e) => {
-                                                    const newAlts = [...imageAlts];
-                                                    newAlts[index] = e.target.value;
-                                                    setImageAlts(newAlts);
-                                                }}
-                                                placeholder="Alt text (SEO description)"
-                                                className="w-full px-2 py-1 text-xs border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-                                            />
-
-                                            <button
-                                                type="button"
-                                                onClick={() => removeImage(index)}
-                                                className="absolute top-2 right-2 bg-red-500 text-white p-1 rounded-full"
-                                            >
-                                                <TrashIcon className="h-4 w-4" />
-                                            </button>
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
-                        </div>
                     </div>
 
                     <div className="space-y-6">
@@ -294,6 +281,19 @@ export default function ContentForm({
                                     <Option value="published">Published</Option>
                                     <Option value="scheduled">Scheduled</Option>
                                 </Select>
+                            </div>
+
+                            <div>
+                                <Typography variant="small" className="mb-2 font-medium text-gray-700">
+                                    Slug
+                                </Typography>
+                                <input
+                                    type="text"
+                                    value={slug}
+                                    onChange={(e) => setSlug(e.target.value)}
+                                    placeholder="/post-slug"
+                                    className="w-full h-11 px-4 border border-gray-300 rounded-lg text-sm focus:border-blue-500 focus:outline-none transition-colors duration-150"
+                                />
                             </div>
 
                             <div>
@@ -391,7 +391,7 @@ export default function ContentForm({
                                     />
                                 </div>
                             </div>
-                            {/* Google Preview */}
+
                             <div className="border rounded-lg p-4 bg-gray-50 space-y-1">
                                 <p className="text-xs text-green-700 truncate">
                                     https://yourdomain.com/{slug || "post-slug"}
