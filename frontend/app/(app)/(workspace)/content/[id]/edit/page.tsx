@@ -12,9 +12,9 @@ export default async function EditContent({
     {
       id: "1",
       title: "Post One",
-      slug: "post-one",
+      slug: "ilikeitwhenyousleep",
       content: "Example content",
-      status: "draft",
+      status: "published",
       sites: ["travelerthailand.com"],
       tags: ["travel", "luxury"],
     },
@@ -28,3 +28,5 @@ export default async function EditContent({
 
   return <ContentForm mode="edit" initialData={post} />;
 }
+
+  
