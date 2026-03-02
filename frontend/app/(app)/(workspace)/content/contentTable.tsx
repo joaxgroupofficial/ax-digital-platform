@@ -56,7 +56,6 @@ export default function ContentTable() {
           </tr>
         </thead>
 
-        {/* wait to wirte fetch query from sql */}
         <tbody>
           <tr className="border-b">
             <td className="p-4">news name</td>
